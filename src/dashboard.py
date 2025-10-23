@@ -2,7 +2,11 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="DataInsight Dashboard", page_icon="📊", layout="wide")
+st.set_page_config(
+    page_title="DataInsight Dashboard",
+    page_icon="📊",
+    layout="wide"
+    )
 
 st.title("📊 DataInsight Dashboard")
 st.markdown("### Automated CSV Analysis and Visualization")
@@ -28,19 +32,37 @@ with col2:
 with col3:
     st.metric("Total Profit", f"${df['Profit'].sum():,.0f}")
 with col4:
-    st.metric("Avg Quantity", f"{df['Quantity'].mean():.2f}")
+    st.metric(
+        "Avg Quantity",
+        f"{df['Quantity'].mean():.2f}"
+    )
 
 st.subheader("Visualizations")
 
-fig1 = px.bar(df, x="Region", y="Sales", color="Region", title="Sales by Region", text_auto=True)
+fig1 = px.bar(
+    df, x="Region",
+    y="Sales", color="Region",
+    title="Sales by Region",
+    text_auto=True
+    )
 st.plotly_chart(fig1, use_container_width=True)
 
-fig2 = px.line(df, x="Date", y="Profit", title="Profit Trend Over Time", markers=True)
+fig2 = px.line(
+    df,
+    x="Date",
+    y="Profit",
+    title="Profit Trend Over Time",
+    markers=True)
 st.plotly_chart(fig2, use_container_width=True)
 
 st.subheader("Profit vs Sales Correlation")
-fig3 = px.scatter(df, x="Sales", y="Profit", size="Quantity", color="Region", hover_name="Region",
-                  title="Profit vs Sales")
+fig3 = px.scatter(
+    df, x="Sales",
+    y="Profit",
+    size="Quantity",
+    color="Region",
+    hover_name="Region",
+    title="Profit vs Sales")
 st.plotly_chart(fig3, use_container_width=True)
 
 st.markdown("---")
